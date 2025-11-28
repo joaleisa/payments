@@ -14,7 +14,7 @@ class Payment(Base):
     description = Column(String(255), nullable=False)
     created_at = Column(DATE, nullable=False, default=datetime.date.today())
     installment_qty = Column(Integer, nullable=False, default=1)
-    first_payment_date = Column(String(45), nullable=False, default=datetime.date.today())
+    first_payment_date = Column(String(45), default=datetime.date.today()) #todo: checkear formato en bd
     total_amount = Column(DECIMAL(10,2), nullable=False)
 
 

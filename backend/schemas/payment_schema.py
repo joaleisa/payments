@@ -10,7 +10,7 @@ class PaymentCreate(BaseModel):
     description: Optional[str] = None
     created_at: Optional[datetime.date] = None
     installment_qty: Optional[int] = None
-    first_payment_date: Optional[datetime.date] = None
+    first_payment_date: Optional[datetime.date] = datetime.date.today()
     total_amount: float
 
 class PaymentUpdate(BaseModel):
