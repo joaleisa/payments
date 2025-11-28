@@ -21,4 +21,4 @@ class Payment(Base):
     user = relationship("User", back_populates="payments")
     payment_method = relationship("Payment_Method", back_populates="payments")
     person = relationship("Person", back_populates="payments") #todo: modificar para muchas personas
-    # installments = relationship("Installment", back_populates="payment")
+    installments = relationship("Installment", back_populates="payment")
