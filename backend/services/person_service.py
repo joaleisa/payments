@@ -10,5 +10,9 @@ class PersonService:
 
     def create_person(self, person_data: PersonCreate) -> Person:
         #todo: las personas deberían estar asociadas a un usuario
-        new_person = Person(**person_data.dict())
+        # new_person = Person(**person_data.dict())
+        new_person = Person(
+            name=person_data.name,
+            user_id=person_data.user_id
+        )
         return self.repository.create(new_person)
