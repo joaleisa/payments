@@ -11,5 +11,6 @@ class Person(Base):
 
 
     user = relationship("User", back_populates="persons")
+    payments = relationship("Payment", back_populates="person")
     #todo: verificar con modelos POO
     
