@@ -1,39 +1,22 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
-from passlib.context import CryptContext
 
-from typing import Optional
 from backend.database.database import get_db
-from backend.models.user import User
+from backend.repositories.user_repository import UserRepository
+from backend.services.user_service import UserService
 from backend.schemas.user_schema import UserResponse, UserCreate
 
 
-router = APIRouter(
-    prefix="/user",
-    tags=["user"]
-)
+router = APIRouter(prefix="/user", tags=["user"])
 
-password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def get_user_service(db: Session = Depends(get_db)) -> UserService:
+    repository = UserRepository(db)
+    return UserService(repository)
+
 
 @router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
-def create_user(user: UserCreate,db: Session = Depends(get_db)):
-    email_exists = db.query(User).filter(User.email == user.email).first()
-    if email_exists:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Este email ya está asociado a otra cuenta")
+def create_user(user: UserCreate, service: UserService = Depends(get_user_service)):
+    return service.create_user(user)
 
-    username_exists = db.query(User).filter(User.username == user.username).first()
-    if username_exists:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Usuario no disponible")
-
-    #todo: crear funcionalidad de hash
-    hashed_password = password_context.hash(user.password)
-    db_user = User(
-        username=user.username,
-        email=user.email,
-        password=hashed_password
-    )
-
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
+#todo: resto de métodos
