@@ -210,5 +210,5 @@ __marimo__/
 .idea
 
 #certificates
-/ssl_certificates
+/backend/ssl_certificates
 /backend/database/config.py

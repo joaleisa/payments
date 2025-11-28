@@ -2,11 +2,11 @@ import os
 import ssl
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
-from config import settings
+from .config import settings
 
 # Certificados
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CERTS_DIR = os.path.join(BASE_DIR, "certificados")
+CERTS_DIR = os.path.join(BASE_DIR, "ssl_certificates")
 print(CERTS_DIR)
 
 # Create SSL context - bypass strict verification

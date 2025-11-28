@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from backend.routers import person_router
+
 
 app = FastAPI(
     title="Payments API",
@@ -9,7 +11,7 @@ app = FastAPI(
 #todo: middleware
 
 #todo: routers
-# app.include_router(router)
+app.include_router(person_router.router)
 
 @app.get("/")
 def root():
