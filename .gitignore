@@ -211,3 +211,4 @@ __marimo__/
 
 #certificates
 /ssl_certificates
+/backend/database/config.py
