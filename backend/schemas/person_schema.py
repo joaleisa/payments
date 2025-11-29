@@ -6,11 +6,14 @@ class PersonCreate(BaseModel):
     user_id: int
 
 class PersonUpdateName(BaseModel):
-    id: int
+    # id: int
     name: str
-    user_id: int
+    # user_id: int
 
 class PersonResponse(BaseModel):
     id: int
     name: str
     user_id: int
+
+    class Config:
+        form_attributes = True #todo: what's this for?
