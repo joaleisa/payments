@@ -1,26 +1,26 @@
 import datetime
 from typing import Optional
-
 from pydantic import BaseModel
 
 class PurchaseCreate(BaseModel):
     payment_method_id: int
     user_id: int
-    person_id: list[int]
-    description: Optional[str] = None
-    created_at: Optional[datetime.date] = None
-    installment_qty: Optional[int] = None
-    first_payment_date: Optional[datetime.date] = datetime.date.today()
+    description: str | None = None
+    created_at: datetime.date | None = None
+    installment_qty: int | None = 1
+    first_payment_date: datetime.date | None = datetime.date.today()
     total_amount: float
+    person_ids: list[int]
 
-class PaymentUpdate(BaseModel):
+class PurchaseUpdate(BaseModel):
     payment_method_id: int
     person_id: int
     description: Optional[str] = None
 
-class PaymentResponse(BaseModel):
+class PurchaseResponse(BaseModel):
     id: int
     payment_method_id: int
-    person_id: int
+    # person_id: int
     description: Optional[str] = None
     total_amount: float
+

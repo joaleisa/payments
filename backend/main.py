@@ -13,7 +13,7 @@ app = FastAPI(
 app.include_router(person_router.router)
 app.include_router(payment_method_router.router)
 app.include_router(user_router.router)
-app.include_router(payment_router.router)
+app.include_router(purchase_router.router)
 
 @app.get("/")
 def root():

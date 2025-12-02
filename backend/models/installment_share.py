@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, Boolean, String, DATE
+from sqlalchemy import Column, Integer, ForeignKey, Boolean, String, DATE, DECIMAL
 from sqlalchemy.orm import relationship
 from backend.database.database import Base
 
@@ -9,6 +9,7 @@ class Installment_Share(Base):
     installment_id = Column(Integer, ForeignKey("installment.id"), nullable=False)
     person_id = Column(Integer, ForeignKey("person.id"), nullable=False)
     is_paid = Column(Boolean, default=False)
+    amount = Column(DECIMAL(10,2), nullable=False)
     paid_date = Column(DATE, nullable=True)
     notes = Column(String(255), nullable=True)
 

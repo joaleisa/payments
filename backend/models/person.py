@@ -11,6 +11,5 @@ class Person(Base):
 
 
     user = relationship("User", back_populates="persons")
-    purchases = relationship("Purchase", back_populates="person")
     #todo: verificar con modelos POO
     
