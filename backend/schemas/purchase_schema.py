@@ -3,10 +3,10 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-class PaymentCreate(BaseModel):
+class PurchaseCreate(BaseModel):
     payment_method_id: int
     user_id: int
-    person_id: int #todo: list and create table persons_payments
+    person_id: list[int]
     description: Optional[str] = None
     created_at: Optional[datetime.date] = None
     installment_qty: Optional[int] = None

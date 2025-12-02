@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from backend.routers import person_router, payment_method_router, user_router, payment_router
+from backend.routers import person_router, payment_method_router, user_router, purchase_router
 
 app = FastAPI(
     title="Payments API",

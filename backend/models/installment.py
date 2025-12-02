@@ -8,11 +8,11 @@ class Installment(Base):
     __tablename__ = "installment"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
-    payment_id = Column(Integer, ForeignKey("payment.id"), nullable=False)
+    purchase_id = Column(Integer, ForeignKey("purchase.id"), nullable=False)
     installment_number = Column(Integer, nullable=False)
     amount = Column(DECIMAL(10,2), nullable=False)
     due_date = Column(DATE, nullable=True)
     is_paid = Column(Boolean, default=False)
     paid_date = Column(DATE, nullable=True)
 
-    payment = relationship("Payment", back_populates="installments")
+    purchase = relationship("Purchase", back_populates="installments")
