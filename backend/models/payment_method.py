@@ -4,7 +4,7 @@ from backend.database.database import Base
 from sqlalchemy import Column, Integer, String, ForeignKey
 
 
-class Payment_Method(Base):
+class PaymentMethod(Base):
     __tablename__ = "payment_method"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     name = Column(String(45), nullable=False)

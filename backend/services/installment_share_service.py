@@ -1,8 +1,8 @@
-from backend.models.installment_share import Installment_Share
-from backend.repositories.installment_share_repository import Installment_Share_Repository
+from backend.models.installment_share import InstallmentShare
+from backend.repositories.installment_share_repository import InstallmentShareRepository
 from backend.schemas.installment_share_schema import *
 
-class Installment_Share_Service:
-    def __init__(self, repository: Installment_Share_Repository):
+class InstallmentShareService:
+    def __init__(self, repository: InstallmentShareRepository):
         self.repository = repository
 

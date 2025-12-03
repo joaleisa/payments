@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from backend.models.purchase import Purchase
 
-class Purchase_Repository:
+class PurchaseRepository:
     def __init__(self, db: Session):
         self.db = db
 

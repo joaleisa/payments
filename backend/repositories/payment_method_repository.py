@@ -1,12 +1,12 @@
 from sqlalchemy.orm import Session
-from backend.models.payment_method import Payment_Method
+from backend.models.payment_method import PaymentMethod
 
 
-class Payment_Method_Repository:
+class PaymentMethodRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def create(self, payment_method: Payment_Method) -> Payment_Method:
+    def create(self, payment_method: PaymentMethod) -> PaymentMethod:
         self.db.add(payment_method)
         self.db.commit()
         self.db.refresh(payment_method)

@@ -16,6 +16,6 @@ class User(Base):
     password = Column(String(255), nullable=False)
 
 
-    payment_methods = relationship("Payment_Method", back_populates="user")
+    payment_methods = relationship("PaymentMethod", back_populates="user")
     persons = relationship("Person", back_populates="user")
     purchases = relationship("Purchase", back_populates="user")

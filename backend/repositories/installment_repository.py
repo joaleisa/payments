@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from backend.models import Installment
 
-class Installment_Repository:
+class InstallmentRepository:
     def __init__(self, db: Session):
         self.db = db
 

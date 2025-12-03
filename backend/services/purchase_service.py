@@ -1,14 +1,14 @@
 from datetime import timedelta
 
 from backend.models import Installment
-from backend.models.installment_share import Installment_Share
+from backend.models.installment_share import InstallmentShare
 from backend.models.purchase import Purchase
-from backend.repositories.installment_repository import Installment_Repository
-from backend.repositories.purchase_repository import Purchase_Repository
+from backend.repositories.installment_repository import InstallmentRepository
+from backend.repositories.purchase_repository import PurchaseRepository
 from backend.schemas.purchase_schema import *
 
-class Purchase_Service:
-    def __init__(self, repository: Purchase_Repository):
+class PurchaseService:
+    def __init__(self, repository: PurchaseRepository):
         self.repository = repository
 
 
@@ -44,7 +44,7 @@ class Purchase_Service:
                 self.repository.db.flush()
 
                 for person_id in purchase_data.person_ids:  # notice that we use purchase_data instead of new_purchase
-                    installment_share = Installment_Share(
+                    installment_share = InstallmentShare(
                         installment_id=current_installment.id,
                         person_id= person_id,
                         is_paid = False,
@@ -58,3 +58,6 @@ class Purchase_Service:
         except Exception as e:
             self.repository.db.rollback()
             raise e
+
+    def update_purchase(self, purchase: Purchase):
+        pass

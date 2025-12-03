@@ -13,8 +13,8 @@ class PurchaseCreate(BaseModel):
     person_ids: list[int]
 
 class PurchaseUpdate(BaseModel):
-    payment_method_id: int
-    person_id: int
+    id: int
+    payment_method_id: int | None
     description: Optional[str] = None
 
 class PurchaseResponse(BaseModel):

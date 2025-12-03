@@ -8,7 +8,6 @@ class PaymentMethodCreate(BaseModel):
 
 
 
-
 class PaymentMethodResponse(BaseModel):
     id: int
     name: str

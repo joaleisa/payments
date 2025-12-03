@@ -16,4 +16,4 @@ class Installment(Base):
     paid_date = Column(DATE, nullable=True)
 
     purchase = relationship("Purchase", back_populates="installments")
-    installment_shares = relationship("Installment_Share", back_populates="installment")
+    installment_shares = relationship("InstallmentShare", back_populates="installment")

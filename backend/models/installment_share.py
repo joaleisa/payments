@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey, Boolean, String, DATE, DECIM
 from sqlalchemy.orm import relationship
 from backend.database.database import Base
 
-class Installment_Share(Base):
+class InstallmentShare(Base):
     __tablename__ = "installment_share"
 
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
