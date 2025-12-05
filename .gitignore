@@ -208,3 +208,7 @@ __marimo__/
 
 #Pycharm
 .idea
+
+#certificates
+/backend/ssl_certificates
+/backend/database/config.py
