@@ -51,8 +51,8 @@ class UserService:
             self.repository.db.rollback()
             raise e
 
-    def get_users(self) -> list[User]:
-        return self.repository.get_users()
+    def get_all_users(self) -> list[User]:
+        return self.repository.get_all_users()
 
-    def get_user(self, user_id):
+    def get_by_id(self, user_id):
         return self.repository.get_by_id(user_id)

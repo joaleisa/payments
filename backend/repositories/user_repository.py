@@ -21,5 +21,5 @@ class UserRepository:
         self.db.refresh(user)
         return user
 
-    def get_users(self):
+    def get_all_users(self):
         return self.db.query(User).all()
