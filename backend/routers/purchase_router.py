@@ -17,5 +17,13 @@ def get_purchase_service(db: Session = Depends(get_db)) -> PurchaseService:
     return PurchaseService(purchase_repository)
 
 @router.post("/", status_code=status.HTTP_201_CREATED)  # todo: response model
-def create_purchase(purchase: PurchaseCreate, service: PurchaseService = Depends(get_purchase_service)):
+async def create_purchase(purchase: PurchaseCreate, service: PurchaseService = Depends(get_purchase_service)):
     return service.create_purchase(purchase)
+
+@router.get("/{purchase_id}", response_model=PurchaseResponse, status_code=status.HTTP_200_OK)
+async def get_purchase(purchase_id: int, service: PurchaseService = Depends(get_purchase_service)):
+    return service.get_by_id(purchase_id)
+
+@router.get("/", response_model=list[PurchaseResponse], status_code=status.HTTP_200_OK)
+async def get_purchase(service: PurchaseService = Depends(get_purchase_service)):
+    return service.get_all()
