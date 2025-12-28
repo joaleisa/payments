@@ -6,3 +6,4 @@ pymysql
 
 passlib
 bcrypt
+cryptography

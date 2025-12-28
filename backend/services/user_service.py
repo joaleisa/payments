@@ -13,7 +13,8 @@ class UserService:
         self.repository = repository
 
     def create_user(self, user_data: UserCreate) -> User:
-        # Business logic: check uniqueness
+
+        #Todo: create corresponding person to this user
         if self.repository.get_by_email(user_data.email):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
@@ -27,8 +28,9 @@ class UserService:
             )
 
         # Business logic: hash password
-        hashed_password = password_context.hash(user_data.password)
 
+        print("LLEGA AL HASH")
+        hashed_password = password_context.hash(user_data.password)
         new_user = User(
             username=user_data.username,
             email=user_data.email,
