@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, status
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, defer
 
 from backend.database.database import get_db
 from backend.repositories.user_repository import UserRepository
@@ -16,7 +16,15 @@ def get_user_service(db: Session = Depends(get_db)) -> UserService:
 
 
 @router.post("/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
-def create_user(user: UserCreate, service: UserService = Depends(get_user_service)):
+async def create_user(user: UserCreate, service: UserService = Depends(get_user_service)):
     return service.create_user(user)
+
+@router.get("/", response_model=list[UserResponse], status_code=status.HTTP_200_OK)
+async def get_all_users(service: UserService = Depends(get_user_service)):
+    return service.get_users()
+
+@router.get("/{user_id}", response_model=UserResponse, status_code=status.HTTP_200_OK)
+async def get_user(user_id: int, service: UserService = Depends(get_user_service)):
+    return service.get_user(user_id)
 
 #todo: resto de métodos

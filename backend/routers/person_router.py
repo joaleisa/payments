@@ -25,7 +25,7 @@ def get_all_persons(service: PersonService = Depends(get_person_service)):
     return service.get_all()
 
 @router.get("/{person_id}", response_model=PersonResponse, status_code=status.HTTP_200_OK)
-def get_all_persons(person_id: int ,service: PersonService = Depends(get_person_service)):
+def get_all_persons(person_id: int ,service: PersonService = Depends(get_person_service)): # ToDo: fix
     return service.get_by_id(person_id)
 
 @router.get("/name/{name}", response_model=list[PersonResponse], status_code=status.HTTP_200_OK)

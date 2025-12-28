@@ -20,3 +20,6 @@ class UserRepository:
         self.db.commit()
         self.db.refresh(user)
         return user
+
+    def get_users(self):
+        return self.db.query(User).all()

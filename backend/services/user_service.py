@@ -1,6 +1,7 @@
 from fastapi import HTTPException, status
 from passlib.context import CryptContext
 
+from backend.models import Person
 from backend.models.user import User
 from backend.repositories.user_repository import UserRepository
 from backend.schemas.user_schema import *
@@ -13,28 +14,45 @@ class UserService:
         self.repository = repository
 
     def create_user(self, user_data: UserCreate) -> User:
+        # ToDo: refactor code. Too much responsibilities for this one method
+        try:
+            if self.repository.get_by_email(user_data.email):
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Este email ya está asociado a otra cuenta"
+                )
 
-        #Todo: create corresponding person to this user
-        if self.repository.get_by_email(user_data.email):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Este email ya está asociado a otra cuenta"
+            if self.repository.get_by_username(user_data.username):
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Usuario no disponible"
+                )
+
+            hashed_password = password_context.hash(user_data.password)
+            new_user = User(
+                username=user_data.username,
+                email=user_data.email,
+                password=hashed_password
             )
 
-        if self.repository.get_by_username(user_data.username):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Usuario no disponible"
+            self.repository.db.add(new_user)
+            self.repository.db.flush()
+
+            new_person = Person(
+                name = user_data.username,
+                user_id = new_user.id
             )
+            self.repository.db.add(new_person)
 
-        # Business logic: hash password
+            self.repository.db.commit()
+            return new_user
 
-        print("LLEGA AL HASH")
-        hashed_password = password_context.hash(user_data.password)
-        new_user = User(
-            username=user_data.username,
-            email=user_data.email,
-            password=hashed_password
-        )
+        except Exception as e:
+            self.repository.db.rollback()
+            raise e
 
-        return self.repository.create(new_user)
+    def get_users(self) -> list[User]:
+        return self.repository.get_users()
+
+    def get_user(self, user_id):
+        return self.repository.get_by_id(user_id)

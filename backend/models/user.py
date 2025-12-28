@@ -9,6 +9,8 @@ from sqlalchemy import Column, Integer, String
 
 
 class User(Base):
+    # ToDo: add name information?
+
     __tablename__ = "user"
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     username = Column(String(45), nullable=False, unique=True)
