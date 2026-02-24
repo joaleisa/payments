@@ -1,3 +1,6 @@
+#other files
+plan_estudio_completo.md
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -212,3 +215,4 @@ __marimo__/
 #certificates
 /backend/ssl_certificates
 /backend/database/config.py
+

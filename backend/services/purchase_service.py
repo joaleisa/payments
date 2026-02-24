@@ -61,3 +61,9 @@ class PurchaseService:
 
     def update_purchase(self, purchase: Purchase):
         pass
+
+    def get_by_id(self, purchase_id):
+        return self.repository.get_by_id(purchase_id)
+
+    def get_all(self):
+        return self.repository.get_all()
