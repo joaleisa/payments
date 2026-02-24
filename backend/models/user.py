@@ -1,9 +1,8 @@
 import datetime
 
-from sqlalchemy.dialects.mysql import DATETIME
 from sqlalchemy.orm import relationship
 from backend.database.database import Base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
 
 # from backend.models.person import Person
 
@@ -15,7 +14,7 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     username = Column(String(45), nullable=False, unique=True)
     role = Column(String(45), nullable=False, default="user")
-    created_at = Column(DATETIME, nullable=False, default=datetime.datetime.today()) #todo: only default
+    created_at = Column(DateTime, nullable=False, default=datetime.datetime.today()) #todo: only default
     email = Column(String(255), nullable=False, unique=True)
     password = Column(String(255), nullable=False)
 

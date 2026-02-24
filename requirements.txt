@@ -2,7 +2,7 @@ pydantic
 fastapi[standard]
 pydantic-settings
 sqlalchemy
-pymysql
+psycopg2-binary
 
 passlib
 bcrypt

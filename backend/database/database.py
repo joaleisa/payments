@@ -1,39 +1,20 @@
-import os
-import ssl
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
-from .config import settings
+from config import settings
 
-# Certificados
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# CERTS_DIR = os.path.join(BASE_DIR, "ssl_certificates")
-# print(CERTS_DIR)
-
-# Create SSL context - bypass strict verification
-# ssl_context = ssl.create_default_context()
-# ssl_context.check_hostname = False
-# ssl_context.verify_mode = ssl.CERT_NONE
-
-# Load client certificates for authentication
-# ssl_context.load_cert_chain(
-#     certfile=os.path.join(CERTS_DIR, "client-cert.pem"),
-#     keyfile=os.path.join(CERTS_DIR, "client-key.pem")
-# )
+# docs:  https://medium.com/@kevinkoech265/a-guide-to-connecting-postgresql-and-pythons-fast-api-from-installation-to-integration-825f875f9f7d
 
 # Build connection string
-DATABASE_URL = f"mysql+pymysql://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
 
+DATABASE_URL = f"postgresql+psycopg2://{settings.DB_USER}:{settings.DB_PASSWORD}\
+                            @{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
 
-engine = create_engine(
-    DATABASE_URL
-    # DATABASE_URL,
-    # connect_args={"ssl": ssl_context}
-)
+engine = create_engine(DATABASE_URL)
 
 # Create Session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Create Base class
+# Create Base object
 class Base(DeclarativeBase):
     pass
 
