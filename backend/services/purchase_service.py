@@ -27,9 +27,9 @@ class PurchaseService:
                 first_payment_date=purchase_data.first_payment_date,
                 total_amount=purchase_data.total_amount
             )
-
-            self.repository.db.add(new_purchase)
-            self.repository.db.flush()  # todo: what's the flush for?
+            self.repository.add_new(new_purchase)
+            # self.repository.db.add(new_purchase)
+            # self.repository.db.flush()  # todo: what's the flush for?
 
             for i in range(new_purchase.installment_qty):
                 current_installment = Installment(
@@ -39,9 +39,9 @@ class PurchaseService:
                     due_date = new_purchase.first_payment_date + timedelta(days=i * 30),
                     is_paid = False
                 )
-
-                self.repository.db.add(current_installment)  # todo: make the installment_repository save it?
-                self.repository.db.flush()
+                self.repository.add_new(current_installment)
+                # self.repository.db.add(current_installment)  # todo: make the installment_repository save it?
+                # self.repository.db.flush()
 
                 for person_id in purchase_data.person_ids:  # notice that we use purchase_data instead of new_purchase
                     installment_share = InstallmentShare(
@@ -50,9 +50,11 @@ class PurchaseService:
                         is_paid = False,
                         amount = current_installment.amount / len(purchase_data.person_ids),
                     )
-                    self.repository.db.add(installment_share)
+                    self.repository.add_new(installment_share)
+                    # self.repository.db.add(installment_share)
 
-            self.repository.db.commit()
+            self.repository.commit()
+            # self.repository.db.commit()
             return new_purchase
 
         except Exception as e:

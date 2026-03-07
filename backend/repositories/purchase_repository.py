@@ -17,3 +17,12 @@ class PurchaseRepository:
     def get_all(self):
         return self.db.query(Purchase).offset(0).limit(100).all()
 
+    def add_new(self, item):
+        self.db.add(item)
+        self.db.flush()
+
+    def commit(self):
+        self.db.commit()
+
+
+
