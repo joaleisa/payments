@@ -25,5 +25,5 @@ async def get_purchase(purchase_id: int, service: PurchaseService = Depends(get_
     return service.get_by_id(purchase_id)
 
 @router.get("/", response_model=list[PurchaseResponse], status_code=status.HTTP_200_OK)
-async def get_purchase(service: PurchaseService = Depends(get_purchase_service)):
+async def get_purchases(service: PurchaseService = Depends(get_purchase_service)):
     return service.get_all()
