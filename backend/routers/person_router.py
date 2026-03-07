@@ -8,8 +8,8 @@ from backend.schemas.person_schema import *
 from backend.services.person_service import PersonService
 
 router = APIRouter(
-    prefix="/person",
-    tags=["person"]
+    prefix="/persons",
+    tags=["persons"]
 )
 def get_person_service(db: Session = Depends(get_db)) -> PersonService:
     repository = PersonRepository(db)

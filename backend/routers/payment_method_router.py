@@ -8,8 +8,8 @@ from backend.schemas.payment_method_schema import *
 from backend.services.payment_method_service import PaymentMethodService
 
 router = APIRouter(
-    prefix="/payment_method",
-    tags=["payment_method"]
+    prefix="/payment-methods",
+    tags=["payment-method"]
 )
 
 def get_payment_method_service(db: Session = Depends(get_db)) -> PaymentMethodService:

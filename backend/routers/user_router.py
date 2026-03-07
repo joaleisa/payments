@@ -7,7 +7,7 @@ from backend.services.user_service import UserService
 from backend.schemas.user_schema import UserResponse, UserCreate
 
 
-router = APIRouter(prefix="/user", tags=["user"])
+router = APIRouter(prefix="/users", tags=["user"])
 
 
 def get_user_service(db: Session = Depends(get_db)) -> UserService:

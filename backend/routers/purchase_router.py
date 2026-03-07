@@ -8,8 +8,8 @@ from backend.schemas.purchase_schema import *
 from backend.services.purchase_service import PurchaseService
 
 router = APIRouter(
-    prefix="/purchase",
-    tags=["purchase"]
+    prefix="/purchases",
+    tags=["purchases"]
 )
 
 def get_purchase_service(db: Session = Depends(get_db)) -> PurchaseService:
