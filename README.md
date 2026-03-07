@@ -70,3 +70,10 @@ backend/
    ```
 
 4. **Explore the API** at `http://localhost:8000/docs`
+
+## Resources to learn from
+- [FastAPI docs](https://fastapi.tiangolo.com/)
+- [restfulapi.net](https://restfulapi.net/)
+- [repo for best practices](https://github.com/zhanymkanov/fastapi-best-practices)
+
+
