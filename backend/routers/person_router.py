@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import Optional
-from backend.database.database import get_db
-from backend.models.person import Person
+from database.database import get_db
 from backend.repositories.person_repository import PersonRepository
 from backend.schemas.person_schema import *
 from backend.services.person_service import PersonService
