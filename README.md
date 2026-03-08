@@ -75,5 +75,6 @@ backend/
 - [FastAPI docs](https://fastapi.tiangolo.com/)
 - [restfulapi.net](https://restfulapi.net/)
 - [repo for best practices](https://github.com/zhanymkanov/fastapi-best-practices)
+- [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 

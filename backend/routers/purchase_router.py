@@ -14,7 +14,7 @@ router = APIRouter(
 
 def get_purchase_service(db: Session = Depends(get_db)) -> PurchaseService:
     purchase_repository = PurchaseRepository(db)
-    return PurchaseService(purchase_repository)
+    return PurchaseService(purchase_repository, db)
 
 @router.post("/", status_code=status.HTTP_201_CREATED)  # todo: response model
 async def create_purchase(purchase: PurchaseCreate, service: PurchaseService = Depends(get_purchase_service)):
